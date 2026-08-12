@@ -1,0 +1,974 @@
+h1 {
+    color: #e63946;
+    font-size: 40px;
+    text-align: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    background-color: #f4f8ff;
+}
+button {
+    background-color: #2563EB;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+}
+input:focus {
+    outline: none;
+    border: 1px solid #2563EB;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+}
+.gender{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin:15px 0;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.menu {
+    display: flex;
+    gap: 25px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.menu a:hover {
+    color: #2563EB;
+    transition: color 0.3s ease;
+}
+.hero {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 70px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 250px;
+    background-color: white;
+    padding:30px;
+    min-height:260px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px lightgray;
+   transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.login-container {
+    width: 400px;
+    margin: 80px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px lightgray;
+}
+
+.register-container {
+    width: 500px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px lightgray;
+    text-align: center;
+}
+textarea {
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+}
+textarea:focus {
+    outline: none;
+    border: 1px solid #2563EB;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+}
+.search-container {
+    width: 500px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px lightgray;
+    text-align: center;
+}
+
+.pg-card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px lightgray;
+    transition: all 0.3s ease;
+}
+
+.pg-card h3 {
+    color: darkblue;
+}
+
+.pg-card p {
+    margin: 8px 0;
+}
+
+.pg-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.pg-card button {
+    cursor: pointer;
+}
+.pg-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.details-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.review {
+    background: white;
+    width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.review h4 {
+    color: #2d5be3;
+    margin-bottom: 10px;
+}
+
+.review p {
+    color: #555;
+}
+
+.dashboard {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.booking-card {
+    width: 500px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px lightgray;
+}
+
+.booking-card h3 {
+    color: #2563EB;
+    margin-bottom: 20px;
+}
+
+.booking-card p {
+    margin: 12px 0;
+}
+
+.saved-pgs {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.saved-pg-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.requests {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.request-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+.request-card {
+    width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px lightgray;
+    transition: all 0.3s ease;
+}
+.request-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.accept-btn {
+    background-color: #16A34A;
+}
+
+.accept-btn:hover {
+    background-color: #15803D;
+}
+
+.reject-btn {
+    background-color: #DC2626;
+}
+
+.reject-btn:hover {
+    background-color: #B91C1C;
+}
+
+.settings {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.settings-card {
+    width: 350px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px lightgray;
+}
+.footer {
+    background-color: #1F2937;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 60px;
+}
+
+.footer h3 {
+    margin-bottom: 10px;
+    color: white;
+}
+
+.footer p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .features,
+    .dashboard-cards,
+    .saved-pg-container,
+    .request-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card,
+    .pg-card,
+    .request-card,
+    .booking-card,
+    .settings-card,
+    .login-container,
+    .register-container,
+    .search-container {
+        width: 90%;
+    }
+
+    input,
+    textarea {
+        width: 90%;
+    }
+}
+select {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+}
+.register-container button{
+    width:180px;
+}
+#pg1,
+#pg2{
+    display:none;
+}
+#roommate1,
+#roommate2,
+#roommate3{
+    display:none;
+}
+#pgHeading{
+    display:none;
+}
+.reject-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.reject-btn:hover{
+    background:darkred;
+}
+.dashboard .card h3{
+    font-size:26px;
+    color:#2563eb;
+    margin:15px 0;
+}
+
+.dashboard .card{
+    transition:0.3s;
+}
+
+.dashboard .card:hover{
+    transform:translateY(-5px);
+}
+.dashboard .card h3{
+    font-size:32px;
+    color:#2563EB;
+    margin:18px 0;
+}
+.dashboard .card button{
+    margin-top:20px;
+}
+.dashboard .card{
+    transition:.3s;
+}
+
+.dashboard .card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+/* ===========================
+   ADMIN TABLE DESIGN
+=========================== */
+
+.admin-container{
+    width:95%;
+    margin:30px auto;
+}
+
+.admin-title{
+    text-align:center;
+    color:#2563EB;
+    margin-bottom:25px;
+}
+
+.admin-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.admin-table th{
+    background:#2563EB;
+    color:white;
+    padding:15px;
+    font-size:16px;
+}
+
+.admin-table td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+.admin-table tr:hover{
+    background:#f5f8ff;
+}
+
+.edit-btn{
+    background:#2563EB;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.edit-btn:hover{
+    background:#1D4ED8;
+}
+
+.delete-btn{
+    background:#DC2626;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.delete-btn:hover{
+    background:#B91C1C;
+}
+
+.add-btn{
+    background:#16A34A;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+
+.add-btn:hover{
+    background:#15803D;
+}
+.available{
+    background:#16A34A;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.notavailable{
+    background:#DC2626;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:bold;
+}
+body{
+    background:#F4F8FF;
+}
+.table-container{
+    width:100%;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    overflow-x:auto;
+}
+.admin-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.admin-table th{
+    background:#2563EB;
+    color:white;
+    padding:14px;
+    text-align:center;
+}
+
+.admin-table td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+.admin-table tr:nth-child(even){
+    background:#f8f9fc;
+}
+
+.admin-table tr:hover{
+    background:#eef4ff;
+}
+.dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    width:70%;
+    margin:60px auto;
+}
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+    min-height:220px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    text-align:center;
+}
+.dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(3,300px);
+    justify-content:center;
+    gap:30px;
+}
+.delete-btn{
+    padding:10px 20px;
+    font-size:15px;
+}
+.table-container{
+    width:95%;
+    margin:30px auto;
+}
+.status-booked{
+    background:#16A34A;
+    color:white;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+.dashboard h1{
+    font-size:42px;
+    color:#2563EB;
+    margin-bottom:10px;
+}
+
+.dashboard-subtitle{
+    color:#666;
+    font-size:18px;
+    margin-bottom:40px;
+}
+
+.dashboard-count{
+    font-size:42px;
+    color:#E63946;
+    margin:15px 0 8px;
+}
+
+.dashboard-info{
+    color:#666;
+    font-size:15px;
+}
+
+.dashboard .card{
+    transition:.3s;
+}
+
+.dashboard .card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+.user-dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(2, 350px);
+    justify-content:center;
+    gap:100px;
+    margin:30px auto;
+}
+
+.user-dashboard-cards .card{
+    width:350px;
+    min-height:220px;
+}
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    padding:40px;
+}
+
+.features .card{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height:420px;
+}
+.card form button{
+    width:100%;
+}
+.card{
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+.features .card:hover{
+    transform:translateY(-6px);
+}
+.page-title{
+    text-align:center;
+    color:#2563EB;
+    margin-top:30px;
+}
+
+.features .card{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+/* ---------- Roommate Requests ---------- */
+
+.page-title{
+    text-align:center;
+    color:#2563EB;
+    margin:30px 0;
+    font-size:38px;
+}
+
+.features{
+    width:90%;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.features .card{
+    width:300px;
+    min-height:360px;
+    background:white;
+    border-radius:12px;
+    padding:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition:.3s;
+}
+
+.features .card:hover{
+    transform:translateY(-6px);
+}
+
+.features .card h2{
+    color:#2563EB;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.features .card p{
+    margin:8px 0;
+    line-height:1.6;
+}
+
+/* Accept Button */
+
+.features .card button{
+    width:100%;
+    background:#2563EB;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+.features .card button:hover{
+    background:#1D4ED8;
+}
+
+/* Reject Button */
+
+.reject-btn{
+    background:#DC2626 !important;
+}
+
+.reject-btn:hover{
+    background:#B91C1C !important;
+}
+
+/* Accepted / Rejected Status */
+
+.features .card h3{
+    text-align:center;
+    color:#16A34A;
+    margin-top:15px;
+}
+.pending{
+    background:#F59E0B;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:bold;
+}
+.request-buttons{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-top:15px;
+}
+.register-container{
+    width:450px;
+    margin:40px auto;
+}
+.register-container label{
+    font-weight:bold;
+    color:#333;
+}
+.register-container button{
+    width:100%;
+}
+/* ---------- Home Statistics ---------- */
+
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    padding:50px 20px;
+    background:white;
+}
+
+.stat-box{
+    width:220px;
+    background:#f8faff;
+    padding:30px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.stat-box:hover{
+    transform:translateY(-6px);
+}
+
+.stat-box h2{
+    color:#2563EB;
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.stat-box p{
+    color:#555;
+    font-size:16px;
+}
+/* ---------- How It Works ---------- */
+
+.how-it-works{
+    padding:60px 20px;
+    background:#F4F8FF;
+}
+
+.steps{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.step{
+    width:240px;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.step:hover{
+    transform:translateY(-6px);
+}
+
+.step-number{
+    width:55px;
+    height:55px;
+    margin:auto;
+    border-radius:50%;
+    background:#2563EB;
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:15px;
+}
+
+.step h3{
+    color:#2563EB;
+    margin-bottom:10px;
+}
+
+.step p{
+    color:#555;
+    line-height:1.6;
+}
+/* ---------- Why Choose Us ---------- */
+
+.why-us{
+    padding:60px 20px;
+    background:white;
+}
+
+.why-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.why-card{
+    width:280px;
+    background:#F8FAFF;
+    padding:30px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.why-card:hover{
+    transform:translateY(-6px);
+}
+
+.why-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.why-card h3{
+    color:#2563EB;
+    margin-bottom:12px;
+}
+
+.why-card p{
+    color:#555;
+    line-height:1.6;
+}
+/* Home page feature cards only */
+.features{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin:40px auto;
+}
+
+.features .card{
+    width:260px;
+    min-height:180px;
+    height:auto;          /* remove fixed height */
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+}
+
+.features .card h2{
+    margin-bottom:15px;
+}
+
+.features .card p{
+    line-height:1.6;
+    color:#555;
+}
+.testimonials{
+    padding:60px 10%;
+    background:#ffffff;
+    text-align:center;
+}
+
+.testimonial-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.testimonial-card{
+    width:300px;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.testimonial-card:hover{
+    transform:translateY(-6px);
+}
+
+.testimonial-card p{
+    color:#555;
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+.testimonial-card h4{
+    color:#2563EB;
+}
+.faq{
+    padding:60px 10%;
+    background:#eef4ff;
+}
+
+.faq-box{
+    max-width:900px;
+    margin:auto;
+}
+
+.faq-box h3{
+    color:#2563EB;
+    margin-top:25px;
+}
+
+.faq-box p{
+    color:#555;
+    line-height:1.6;
+}
