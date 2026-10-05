@@ -1,6 +1,9 @@
 <?php
+
 session_start();
+
 include("../includes/db.php");
+include("../includes/csrf.php");
 
 if(!isset($_SESSION['admin']))
 {
@@ -8,12 +11,34 @@ if(!isset($_SESSION['admin']))
     exit();
 }
 
-$id = (int)$_GET['id'];
+if($_SERVER['REQUEST_METHOD'] !== 'POST')
+{
+    header("Location: manage-pgs.php");
+    exit();
+}
+
+verify_csrf();
+
+$id = filter_input(
+    INPUT_POST,
+    'id',
+    FILTER_VALIDATE_INT
+);
+
+if(!$id)
+{
+    die("Invalid PG ID.");
+}
 
 $stmt = mysqli_prepare(
     $conn,
     "DELETE FROM pgs WHERE id=?"
 );
+
+if(!$stmt)
+{
+    die("Database error.");
+}
 
 mysqli_stmt_bind_param(
     $stmt,
@@ -34,4 +59,5 @@ else
 }
 
 mysqli_stmt_close($stmt);
+
 ?>

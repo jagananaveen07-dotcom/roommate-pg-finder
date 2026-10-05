@@ -2,12 +2,15 @@
 
 session_start();
 include("includes/db.php");
+include("includes/csrf.php");
 
 if(!isset($_SESSION['email']))
 {
     header("Location: login.php");
     exit();
 }
+
+verify_csrf();
 
 $sender_email = $_SESSION['email'];
 
@@ -24,6 +27,16 @@ if($sender_email == $receiver_email)
 {
     echo "<script>
     alert('You cannot send a request to yourself!');
+    window.location='roommates.php';
+    </script>";
+    exit();
+}
+
+// Sample/demo profiles (@example.com) are not real people
+if(str_ends_with(strtolower($receiver_email), '@example.com'))
+{
+    echo "<script>
+    alert('This is a sample profile for demonstration, so it cannot receive requests.');
     window.location='roommates.php';
     </script>";
     exit();

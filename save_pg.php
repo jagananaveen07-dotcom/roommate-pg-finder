@@ -1,24 +1,31 @@
 <?php
+
 session_start();
 include("includes/db.php");
+include("includes/csrf.php");
 
-if(!isset($_SESSION['email']))
-{
+if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
 
+verify_csrf();
+
 $user_email = $_SESSION['email'];
 
-$pg_name = trim($_POST['pg_name']);
-$city = trim($_POST['city']);
-$rent = (int)$_POST['rent'];
+$pg_name = trim($_POST['pg_name'] ?? '');
+$city = trim($_POST['city'] ?? '');
+$rent = (int)($_POST['rent'] ?? 0);
+
+if ($pg_name === '' || $city === '' || $rent <= 0) {
+    die("Invalid PG details.");
+}
 
 // Check if already saved
 $check = mysqli_prepare(
     $conn,
     "SELECT id FROM saved_pgs
-     WHERE user_email=? AND pg_name=?"
+     WHERE user_email = ? AND pg_name = ?"
 );
 
 mysqli_stmt_bind_param(
@@ -32,20 +39,20 @@ mysqli_stmt_execute($check);
 
 $result = mysqli_stmt_get_result($check);
 
-if(mysqli_num_rows($result) > 0)
-{
+if (mysqli_num_rows($result) > 0) {
+
     echo "<script>
     alert('This PG is already in your Saved List!');
     window.location='search.php';
     </script>";
-}
-else
-{
+
+} else {
+
     $stmt = mysqli_prepare(
         $conn,
         "INSERT INTO saved_pgs
         (user_email, pg_name, city, rent)
-        VALUES(?,?,?,?)"
+        VALUES (?, ?, ?, ?)"
     );
 
     mysqli_stmt_bind_param(
@@ -57,15 +64,15 @@ else
         $rent
     );
 
-    if(mysqli_stmt_execute($stmt))
-    {
+    if (mysqli_stmt_execute($stmt)) {
+
         echo "<script>
         alert('PG Saved Successfully!');
         window.location='saved_pgs.php';
         </script>";
-    }
-    else
-    {
+
+    } else {
+
         echo "Something went wrong!";
     }
 

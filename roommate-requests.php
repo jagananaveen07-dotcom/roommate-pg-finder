@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("includes/db.php");
+include("includes/csrf.php");
 
 if(!isset($_SESSION['email']))
 {
@@ -35,6 +36,7 @@ $result = mysqli_stmt_get_result($stmt);
 <nav class="navbar">
 
     <h2>Roommate & PG Finder</h2>
+    <button class="mobile-nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
 
     <div class="menu">
         <a href="dashboard.php">Dashboard</a>
@@ -93,6 +95,7 @@ if($row['status']=="Pending")
 ?>
 
 <form action="accept_request.php" method="POST">
+    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(csrf_token()); ?>">
 
     <input
     type="hidden"
@@ -145,16 +148,19 @@ else
     </div>";
 }
 ?>
-<footer class="footer">
-
-<h3>Roommate & PG Finder</h3>
-
-<p>Helping freshers find affordable PGs and compatible roommates.</p>
-
-<p>© 2026 Roommate & PG Finder | All Rights Reserved</p>
-
-</footer>
 <?php mysqli_stmt_close($stmt); ?>
+<script>
+    // Mobile menu: the stylesheet hides .menu under 768px until it gets the "show" class
+    (function () {
+        var btn = document.getElementById('navToggle');
+        var menu = document.querySelector('.navbar .menu');
+        if (!btn || !menu) return;
+        btn.addEventListener('click', function () {
+            var open = menu.classList.toggle('show');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    })();
+</script>
 </body>
 
 </html>

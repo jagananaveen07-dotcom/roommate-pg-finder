@@ -1,225 +1,730 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-    <title>Roommate & PG Finder</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find verified, affordable PGs and compatible roommates across India's top tech cities. Zero brokerage, verified photos, food details, and smart lifestyle matching.">
+    <title>Roommate & PG Finder | Find Verified PGs & Flatmates in India</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Base & Home Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/home.css">
 </head>
+<body class="home-page">
 
-<body>
-  <nav class="navbar">
-
-    <h2>Roommate & PG Finder</h2>
-
-    <div class="menu">
-        <a href="home.html">Home</a>
-        <a href="search.php">Search PG</a>
-        <a href="roommates.php">Find Roommate</a>
-        <a href="login.php">Login</a>
-        <a href="register.php">Register</a>
-    </div>
-
-</nav>
-<section class="hero">
-
-    <div class="hero-content">
-
-        <h1>Find Your Perfect PG & Roommate</h1>
-
-        <p>Helping freshers find affordable PGs and compatible roommates.</p>
-
-        <a href="search.php">
-            <button>Search PG</button>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="mainNavbar">
+        <a href="home.html" class="nav-brand">
+            <div class="nav-brand-icon">
+                <i class="fa-solid fa-house-chimney-user"></i>
+            </div>
+            <span class="nav-brand-text">Roommate <span>&</span> PG Finder</span>
         </a>
 
-        <a href="roommates.php">
-            <button>Find Roommate</button>
-        </a>
+        <button class="nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
+        <div class="nav-links" id="navMenu">
+            <a href="home.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i> Search PG</a>
+            <a href="roommates.php"><i class="fa-solid fa-user-group"></i> Find Roommate</a>
+            <a href="login.php" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+            <a href="register.php" class="btn-register"><i class="fa-solid fa-user-plus"></i> Register Free</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Guaranteed Co-Living Background Image -->
+    <section class="hero-banner" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.90) 100%), url('Images/hero_bg.jpg') center center / cover no-repeat;">
+        <div class="hero-container">
+            
+            <!-- Trust Badge Pill -->
+            <div class="hero-pill">
+                <i class="fa-solid fa-sparkles"></i>
+                <span>India's #1 Student & Fresher Housing Platform</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="hero-h1">
+                Find Your Ideal <span class="gradient-text">PG & Compatible Roommates</span> in Minutes
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="hero-p">
+                Discover verified, budget-friendly paying guest accommodations and connect with like-minded flatmates across Bangalore, Hyderabad, Chennai, Pune, and more.
+            </p>
+
+            <!-- Embedded Quick Search Bar -->
+            <form action="search.php" method="GET" class="search-card-hero" id="heroSearchForm">
+                
+                <!-- Keyword / Locality -->
+                <div class="search-field">
+                    <label for="searchQuery">Locality or PG Name</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <input type="text" id="searchQuery" name="q" placeholder="e.g. Koramangala, HSR, OMR...">
+                    </div>
+                </div>
+
+                <!-- City Dropdown -->
+                <div class="search-field">
+                    <label for="citySelect">Select City</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-city"></i>
+                        <select id="citySelect" name="city">
+                            <option value="">All Cities</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi NCR">Delhi NCR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Sharing Preference -->
+                <div class="search-field">
+                    <label for="sharingSelect">Room Type</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-bed"></i>
+                        <select id="sharingSelect" name="sharing">
+                            <option value="">Any Sharing</option>
+                            <option value="Single">Single Room</option>
+                            <option value="2-Sharing">2 Sharing</option>
+                            <option value="3-Sharing">3 Sharing</option>
+                            <option value="4-Sharing">4 Sharing</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Max Budget -->
+                <div class="search-field">
+                    <label for="budgetSelect">Max Budget</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                        <select id="budgetSelect" name="max_rent">
+                            <option value="">Any Budget</option>
+                            <option value="6000">Under ₹6,000</option>
+                            <option value="8000">Under ₹8,000</option>
+                            <option value="10000">Under ₹10,000</option>
+                            <option value="15000">Under ₹15,000</option>
+                            <option value="20000">Under ₹20,000</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-hero-submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Search PGs</span>
+                </button>
+
+            </form>
+
+            <!-- Trending Search Tags -->
+            <div class="trending-row">
+                <span style="opacity: 0.9; margin-right: 4px;"><i class="fa-solid fa-fire text-warning"></i> Trending:</span>
+                <a href="search.php?city=Bangalore" class="trending-tag">📍 Bangalore</a>
+                <a href="search.php?city=Hyderabad" class="trending-tag">📍 Hyderabad</a>
+                <a href="search.php?city=Chennai" class="trending-tag">📍 Chennai</a>
+                <a href="search.php?city=Pune" class="trending-tag">📍 Pune</a>
+                <a href="search.php?sharing=Single" class="trending-tag">🛏️ Single Rooms</a>
+                <a href="roommates.php" class="trending-tag">🤝 Find Flatmates</a>
+            </div>
+
+            <!-- Trust Highlights -->
+            <div class="trust-row">
+                <div class="trust-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>100% Verified Properties</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Zero Brokerage Fees</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Free Roommate Matching</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Hygienic Food & Mess</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Floating Live Statistics Counter Section -->
+    <div class="stats-outer-wrap">
+        <div class="stats-box-grid">
+            
+            <div class="stat-item-card">
+                <div class="stat-icon-circle">
+                    <i class="fa-solid fa-building-circle-check"></i>
+                </div>
+                <div class="stat-num">50+</div>
+                <div class="stat-lbl">Verified PGs Listed</div>
+            </div>
+
+            <div class="stat-item-card">
+                <div class="stat-icon-circle" style="background: #f0fdf4; color: #16a34a;">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div class="stat-num">1,200+</div>
+                <div class="stat-lbl">Happy Residents</div>
+            </div>
+
+            <div class="stat-item-card">
+                <div class="stat-icon-circle" style="background: #fef3c7; color: #d97706;">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+                <div class="stat-num">450+</div>
+                <div class="stat-lbl">Roommate Matches</div>
+            </div>
+
+            <div class="stat-item-card">
+                <div class="stat-icon-circle" style="background: #faf5ff; color: #9333ea;">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <div class="stat-num">6+</div>
+                <div class="stat-lbl">Major Tech Hubs</div>
+            </div>
+
+        </div>
     </div>
 
-</section>
-<section class="stats">
+    <!-- Explore Popular Cities Section -->
+    <section class="cities-wrapper">
+        <div class="sec-heading-center">
+            <div class="sec-pill">
+                <i class="fa-solid fa-location-arrow"></i> CITIES WE COVER
+            </div>
+            <h2 class="sec-title">Explore PGs in Top Indian Tech Hubs</h2>
+            <p class="sec-desc">
+                Find curated and affordable accommodations within walking distance to leading IT parks, colleges, and metro stations.
+            </p>
+        </div>
 
-<div class="stat-box">
-<h2>40+</h2>
-<p>Verified PGs</p>
-</div>
+        <div class="cities-layout">
+            
+            <!-- Bangalore Card -->
+            <a href="search.php?city=Bangalore" class="city-box">
+                <img src="Images/city_bangalore.jpg" alt="Bangalore PG Accommodations" class="city-box-img" loading="lazy">
+                <div class="city-box-overlay">
+                    <span class="city-badge-pill">35+ PGs Available</span>
+                    <h3 class="city-name-text">Bangalore</h3>
+                    <p class="city-locs">Koramangala • HSR Layout • Whitefield • Electronic City</p>
+                    <span class="city-link-cta">Explore PGs <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
 
-<div class="stat-box">
-<h2>100+</h2>
-<p>Happy Users</p>
-</div>
+            <!-- Hyderabad Card -->
+            <a href="search.php?city=Hyderabad" class="city-box">
+                <img src="Images/city_hyderabad.jpg" alt="Hyderabad PG Accommodations" class="city-box-img" loading="lazy">
+                <div class="city-box-overlay">
+                    <span class="city-badge-pill">25+ PGs Available</span>
+                    <h3 class="city-name-text">Hyderabad</h3>
+                    <p class="city-locs">Hitec City • Gachibowli • Madhapur • Kondapur</p>
+                    <span class="city-link-cta">Explore PGs <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
 
-<div class="stat-box">
-<h2>20+</h2>
-<p>Roommate Profiles</p>
-</div>
+            <!-- Chennai Card -->
+            <a href="search.php?city=Chennai" class="city-box">
+                <img src="Images/city_chennai.jpg" alt="Chennai PG Accommodations" class="city-box-img" loading="lazy">
+                <div class="city-box-overlay">
+                    <span class="city-badge-pill">20+ PGs Available</span>
+                    <h3 class="city-name-text">Chennai</h3>
+                    <p class="city-locs">OMR • Guindy • Velachery • Thoraipakkam • T. Nagar</p>
+                    <span class="city-link-cta">Explore PGs <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
 
-<div class="stat-box">
-<h2>4</h2>
-<p>Major Cities</p>
-</div>
+            <!-- Pune Card -->
+            <a href="search.php?city=Pune" class="city-box">
+                <img src="Images/city_pune.jpg" alt="Pune PG Accommodations" class="city-box-img" loading="lazy">
+                <div class="city-box-overlay">
+                    <span class="city-badge-pill">18+ PGs Available</span>
+                    <h3 class="city-name-text">Pune</h3>
+                    <p class="city-locs">Hinjewadi • Viman Nagar • Wakad • Kharadi • Baner</p>
+                    <span class="city-link-cta">Explore PGs <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
 
-</section>
-<section class="how-it-works">
+        </div>
+    </section>
 
-<h1 class="page-title">How It Works</h1>
+    <!-- How It Works Section -->
+    <section class="how-it-works-wrap">
+        <div class="sec-heading-center">
+            <div class="sec-pill">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> HOW IT WORKS
+            </div>
+            <h2 class="sec-title">Your 4-Step Journey to a New Home</h2>
+            <p class="sec-desc">
+                We've simplified the entire process from search to move-in, giving you complete peace of mind.
+            </p>
+        </div>
 
-<div class="steps">
+        <div class="steps-layout-grid">
+            
+            <div class="step-card">
+                <div class="step-badge-num">1</div>
+                <div class="step-icon-sq">
+                    <i class="fa-solid fa-magnifying-glass-location"></i>
+                </div>
+                <h3 class="step-t">Search & Filter</h3>
+                <p class="step-d">Filter by locality, sharing type, monthly budget, food preference, and specific room amenities.</p>
+            </div>
 
-<div class="step">
-<div class="step-number">1</div>
-<h3>Search PG</h3>
-<p>Browse verified PGs based on your preferred city and budget.</p>
-</div>
+            <div class="step-card">
+                <div class="step-badge-num">2</div>
+                <div class="step-icon-sq" style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);">
+                    <i class="fa-solid fa-images"></i>
+                </div>
+                <h3 class="step-t">Inspect & Shortlist</h3>
+                <p class="step-d">Review authentic high-res room photos, meal schedules, verified resident ratings, and caretaker contacts.</p>
+            </div>
 
-<div class="step">
-<div class="step-number">2</div>
-<h3>Save Favourite</h3>
-<p>Save the PGs you like for quick access later.</p>
-</div>
+            <div class="step-card">
+                <div class="step-badge-num">3</div>
+                <div class="step-icon-sq" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+                <h3 class="step-t">Connect with Roommates</h3>
+                <p class="step-d">Match with like-minded students and tech professionals who match your sleep schedule, habits, and budget.</p>
+            </div>
 
-<div class="step">
-<div class="step-number">3</div>
-<h3>Book Your PG</h3>
-<p>Book your preferred PG easily through the platform.</p>
-</div>
+            <div class="step-card">
+                <div class="step-badge-num">4</div>
+                <div class="step-icon-sq" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+                <h3 class="step-t">Book & Move In</h3>
+                <p class="step-d">Confirm your booking directly through your user dashboard with zero hidden brokerage commissions.</p>
+            </div>
 
-<div class="step">
-<div class="step-number">4</div>
-<h3>Find Roommate</h3>
-<p>Connect with compatible roommates who match your budget and city.</p>
-</div>
+        </div>
+    </section>
 
-</div>
+    <!-- Why Choose Us Section -->
+    <section class="why-us-wrap">
+        <div class="sec-heading-center">
+            <div class="sec-pill">
+                <i class="fa-solid fa-shield-halved"></i> WHY CHOOSE US
+            </div>
+            <h2 class="sec-title">Built Specially for Freshers & Students</h2>
+            <p class="sec-desc">
+                Moving to a new city can be overwhelming. We eliminate fake listings, exorbitant brokerage, and bad roommate surprises.
+            </p>
+        </div>
 
-</section>
-<section class="why-us">
+        <div class="why-us-grid">
+            
+            <div class="why-card-box">
+                <div class="why-icon-sq icon-blue">
+                    <i class="fa-solid fa-certificate"></i>
+                </div>
+                <div>
+                    <h4 class="why-h4">100% Verified Accommodations</h4>
+                    <p class="why-p">Every PG on our portal is physically reviewed to ensure real photos, authentic room sizes, and active amenities.</p>
+                </div>
+            </div>
 
-<h1 class="page-title">Why Choose Us?</h1>
+            <div class="why-card-box">
+                <div class="why-icon-sq icon-green">
+                    <i class="fa-solid fa-handshake-simple"></i>
+                </div>
+                <div>
+                    <h4 class="why-h4">Zero Brokerage Commission</h4>
+                    <p class="why-p">No hidden agent charges or middleman fees. Direct communication with owners and complete transparency.</p>
+                </div>
+            </div>
 
-<div class="why-container">
+            <div class="why-card-box">
+                <div class="why-icon-sq icon-amber">
+                    <i class="fa-solid fa-users-viewfinder"></i>
+                </div>
+                <div>
+                    <h4 class="why-h4">Smart Roommate Matching</h4>
+                    <p class="why-p">Filter potential flatmates by lifestyle preferences, sleep habits, college, profession, and budget compatibility.</p>
+                </div>
+            </div>
 
-<div class="why-card">
+            <div class="why-card-box">
+                <div class="why-icon-sq icon-purple">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <div>
+                    <h4 class="why-h4">Nutritious Homestyle Meals</h4>
+                    <p class="why-p">Detailed mess menus with 3-times daily hygienic meals, North/South Indian cuisine options, and RO purified water.</p>
+                </div>
+            </div>
 
-<div class="why-icon"></div>
+            <div class="why-card-box">
+                <div class="why-icon-sq icon-rose">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </div>
+                <div>
+                    <h4 class="why-h4">Safe & Secure Environment</h4>
+                    <p class="why-p">CCTV surveillance, biometric entry gates, dedicated wardens, and separate wings for male, female, and co-living.</p>
+                </div>
+            </div>
 
-<h3>Verified PG Listings</h3>
+            <div class="why-card-box">
+                <div class="why-icon-sq icon-cyan">
+                    <i class="fa-solid fa-wifi"></i>
+                </div>
+                <div>
+                    <h4 class="why-h4">High-Speed WiFi & Power Backup</h4>
+                    <p class="why-p">Uninterrupted high-speed broadband and 24/7 generator backup so your work-from-home and study never stop.</p>
+                </div>
+            </div>
 
-<p>Explore trusted and verified PG accommodations with accurate details.</p>
+        </div>
+    </section>
 
-</div>
+    <!-- Roommate Matching Feature Spotlight -->
+    <section class="roommate-banner-wrap">
+        <div class="spotlight-box">
+            
+            <div>
+                <div class="sec-pill" style="background: rgba(255, 255, 255, 0.2); color: #ffffff; border-color: rgba(255, 255, 255, 0.3);">
+                    <i class="fa-solid fa-heart"></i> ROOMMATE FINDER
+                </div>
+                <h2 class="spotlight-h2">Looking for Someone to Share Rent & Expenses?</h2>
+                <p class="spotlight-p">
+                    Connect directly with verified students and young working professionals. Find someone who respects your personal space, study routine, and budget.
+                </p>
+                <div class="spotlight-btn-row">
+                    <a href="roommates.php" class="btn-spot-white">
+                        <i class="fa-solid fa-users"></i> Browse Roommates
+                    </a>
+                    <a href="register.php" class="btn-spot-glass">
+                        <i class="fa-solid fa-plus"></i> Post Your Profile
+                    </a>
+                </div>
+            </div>
 
-<div class="why-card">
+            <!-- Interactive Mockup Preview -->
+            <div class="mock-profile-card">
+                <div class="mock-header">
+                    <div class="mock-avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <h4 style="margin: 0; font-size: 16px; color: #0f172a;">Rahul Sharma, 23</h4>
+                        <p style="margin: 0; font-size: 13px; color: #64748b;">Software Engineer • Bangalore</p>
+                    </div>
+                    <span style="margin-left: auto; background: #dcfce7; color: #15803d; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px;">
+                        <i class="fa-solid fa-check"></i> Verified
+                    </span>
+                </div>
 
-<div class="why-icon"></div>
+                <div class="mock-tag-list">
+                    <span class="mock-tag">💰 Budget: ₹8,000/mo</span>
+                    <span class="mock-tag">🚭 Non-Smoker</span>
+                    <span class="mock-tag">🌙 Night Owl</span>
+                    <span class="mock-tag">🛏️ 2-Sharing</span>
+                </div>
 
-<h3>Smart Roommate Matching</h3>
+                <p style="font-size: 13.5px; color: #475569; margin: 10px 0 16px; line-height: 1.5;">
+                    "Looking for a chilled-out roommate near Koramangala or HSR. Clean habits, vegetarian, working in tech."
+                </p>
 
-<p>Find roommates based on your city, budget, and personal preferences.</p>
+                <a href="roommates.php" style="display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none;">
+                    Connect & Send Request <i class="fa-solid fa-paper-plane" style="margin-left: 4px;"></i>
+                </a>
+            </div>
 
-</div>
+        </div>
+    </section>
 
-<div class="why-card">
+    <!-- Student & Resident Testimonials -->
+    <section class="testimonials-wrap">
+        <div class="sec-heading-center">
+            <div class="sec-pill">
+                <i class="fa-solid fa-quote-left"></i> RESIDENT REVIEWS
+            </div>
+            <h2 class="sec-title">What Students & Young Techies Say</h2>
+            <p class="sec-desc">
+                Thousands of residents found their ideal room and lasting friendships through our platform.
+            </p>
+        </div>
 
-<div class="why-icon"></div>
+        <div class="testimonials-grid">
+            
+            <!-- Testimonial 1 -->
+            <div class="testimonial-item-card">
+                <div>
+                    <div class="star-row">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">
+                        "Finding a clean PG in Koramangala used to be a nightmare with local brokers asking 1 month rent. With this platform, I found a 2-sharing PG with high-speed WiFi in under an hour!"
+                    </p>
+                </div>
+                <div class="reviewer-profile">
+                    <img src="Images/avatar_rahul.jpg" alt="Rahul Kumar" class="reviewer-img" loading="lazy">
+                    <div>
+                        <h4 class="reviewer-name">Rahul Kumar</h4>
+                        <p class="reviewer-sub">Fresher @ Infosys • Bangalore</p>
+                    </div>
+                </div>
+            </div>
 
-<h3>Affordable Options</h3>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-item-card">
+                <div>
+                    <div class="star-row">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">
+                        "The roommate matching system is pure gold. I was matched with Sneha who is also an MBA student in Hyderabad. We get along great and saved 50% on our rent."
+                    </p>
+                </div>
+                <div class="reviewer-profile">
+                    <img src="Images/avatar_sneha.jpg" alt="Sneha Reddy" class="reviewer-img" loading="lazy">
+                    <div>
+                        <h4 class="reviewer-name">Sneha Reddy</h4>
+                        <p class="reviewer-sub">MBA Student • Hyderabad</p>
+                    </div>
+                </div>
+            </div>
 
-<p>Choose from budget-friendly PGs suitable for students and freshers.</p>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-item-card">
+                <div>
+                    <div class="star-row">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">
+                        "The meal details and real photos were completely accurate when I moved in. Very easy dashboard to track saved PGs and booking status. Highly recommended!"
+                    </p>
+                </div>
+                <div class="reviewer-profile">
+                    <img src="Images/avatar_arjun.jpg" alt="Arjun Nair" class="reviewer-img" loading="lazy">
+                    <div>
+                        <h4 class="reviewer-name">Arjun Nair</h4>
+                        <p class="reviewer-sub">Data Analyst @ TCS • Chennai</p>
+                    </div>
+                </div>
+            </div>
 
-</div>
+        </div>
+    </section>
 
-</div>
+    <!-- Frequently Asked Questions (Interactive Accordion) -->
+    <section class="faq-wrap">
+        <div class="sec-heading-center">
+            <div class="sec-pill">
+                <i class="fa-solid fa-circle-question"></i> GOT QUESTIONS?
+            </div>
+            <h2 class="sec-title">Frequently Asked Questions</h2>
+            <p class="sec-desc">
+                Everything you need to know about searching, roommate requests, and booking.
+            </p>
+        </div>
 
-</section>
-<section class="features">
+        <div class="faq-accordion" id="faqAccordion">
+            
+            <div class="faq-item active">
+                <button class="faq-btn" type="button">
+                    <span>Is this website completely free to search PGs and find roommates?</span>
+                    <i class="fa-solid fa-chevron-down faq-icon-arrow"></i>
+                </button>
+                <div class="faq-body">
+                    <p>Yes! Searching for verified PGs, browsing roommate profiles, and sending roommate requests is 100% free with zero brokerage fees or registration costs.</p>
+                </div>
+            </div>
 
-    <div class="card">
-        <h2>Search PG</h2>
-        <p>Find affordable PGs in your city.</p>
-    </div>
+            <div class="faq-item">
+                <button class="faq-btn" type="button">
+                    <span>How are the PG listings and photos verified?</span>
+                    <i class="fa-solid fa-chevron-down faq-icon-arrow"></i>
+                </button>
+                <div class="faq-body">
+                    <p>Every PG submitted by property owners undergoes manual review and verification. We cross-check the building amenities, food menu, security measures, and room photos before listing.</p>
+                </div>
+            </div>
 
-    <div class="card">
-        <h2>Find Roommates</h2>
-        <p>Search roommates based on budget and city.</p>
-    </div>
+            <div class="faq-item">
+                <button class="faq-btn" type="button">
+                    <span>How does the Roommate Finder request system work?</span>
+                    <i class="fa-solid fa-chevron-down faq-icon-arrow"></i>
+                </button>
+                <div class="faq-body">
+                    <p>When you register and browse the Find Roommate section, you can send direct connection requests. The other user can accept or reject the request, allowing you both to connect seamlessly.</p>
+                </div>
+            </div>
 
-    <div class="card">
-        <h2>Popular Cities</h2>
-        <p>Bangalore, Chennai, Hyderabad.</p>
-    </div>
+            <div class="faq-item">
+                <button class="faq-btn" type="button">
+                    <span>Can I save favorite PGs to review later?</span>
+                    <i class="fa-solid fa-chevron-down faq-icon-arrow"></i>
+                </button>
+                <div class="faq-body">
+                    <p>Yes, logged-in users can click the "Save PG" button on any listing to bookmark it into their personal Saved PGs list for quick side-by-side comparison.</p>
+                </div>
+            </div>
 
-</section>
-<h4>Quick Links</h4>
+            <div class="faq-item">
+                <button class="faq-btn" type="button">
+                    <span>What amenities are typically included in listed PGs?</span>
+                    <i class="fa-solid fa-chevron-down faq-icon-arrow"></i>
+                </button>
+                <div class="faq-body">
+                    <p>Most listings include 3-times daily meals, high-speed WiFi, attached bathrooms, daily housekeeping, washing machines, 24/7 power backup, and CCTV security.</p>
+                </div>
+            </div>
 
-<a href="home.html">Home</a><br>
-<a href="search.php">Search PG</a><br>
-<a href="roommates.php">Find Roommate</a><br>
-<a href="login.php">Login</a>
-<section class="testimonials">
+        </div>
+    </section>
 
-<h1 class="page-title">What Students Say</h1>
+    <!-- Call to Action Banner -->
+    <section class="cta-outer-wrap">
+        <div class="cta-box">
+            <h2 class="cta-h2">Ready to Move Into Your New Home?</h2>
+            <p class="cta-sub">
+                Join over 1,200+ students and young professionals who found verified PGs and friendly roommates with zero hassle.
+            </p>
+            <div class="cta-btn-group">
+                <a href="search.php" class="btn-spot-white" style="font-size: 16px; padding: 14px 30px;">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search Verified PGs
+                </a>
+                <a href="roommates.php" class="btn-spot-glass" style="font-size: 16px; padding: 14px 30px;">
+                    <i class="fa-solid fa-user-group"></i> Find Compatible Roommates
+                </a>
+            </div>
+        </div>
+    </section>
 
-<div class="testimonial-container">
+    <!-- Comprehensive Modern Footer -->
+    <footer class="footer-wrap">
+        <div class="footer-grid">
+            
+            <!-- Col 1: Brand & Info -->
+            <div>
+                <div class="footer-brand-title">
+                    <div class="nav-brand-icon" style="width: 32px; height: 32px; font-size: 16px;">
+                        <i class="fa-solid fa-house-chimney-user"></i>
+                    </div>
+                    <span>Roommate & PG Finder</span>
+                </div>
+                <p class="footer-desc">
+                    India's leading student and fresher housing portal. Dedicated to making shared living safe, affordable, and pleasant with zero brokerage.
+                </p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
 
-<div class="testimonial-card">
-<p>
-"Finding a PG in Bangalore became so easy.
-I also found a great roommate within two days!"
-</p>
-<h4>Rahul, Bangalore</h4>
-</div>
+            <!-- Col 2: Quick Links -->
+            <div>
+                <h4 class="footer-col-h4">Quick Links</h4>
+                <ul class="footer-list">
+                    <li><a href="home.html"><i class="fa-solid fa-angle-right"></i> Home</a></li>
+                    <li><a href="search.php"><i class="fa-solid fa-angle-right"></i> Search Verified PGs</a></li>
+                    <li><a href="roommates.php"><i class="fa-solid fa-angle-right"></i> Find Roommates</a></li>
+                    <li><a href="login.php"><i class="fa-solid fa-angle-right"></i> User Login</a></li>
+                    <li><a href="register.php"><i class="fa-solid fa-angle-right"></i> Register Free</a></li>
+                </ul>
+            </div>
 
-<div class="testimonial-card">
-<p>
-"The interface is clean and simple.
-Booking a PG took less than five minutes."
-</p>
-<h4>Sneha, Hyderabad</h4>
-</div>
+            <!-- Col 3: Popular Cities -->
+            <div>
+                <h4 class="footer-col-h4">Top Cities</h4>
+                <ul class="footer-list">
+                    <li><a href="search.php?city=Bangalore"><i class="fa-solid fa-angle-right"></i> PGs in Bangalore</a></li>
+                    <li><a href="search.php?city=Hyderabad"><i class="fa-solid fa-angle-right"></i> PGs in Hyderabad</a></li>
+                    <li><a href="search.php?city=Chennai"><i class="fa-solid fa-angle-right"></i> PGs in Chennai</a></li>
+                    <li><a href="search.php?city=Pune"><i class="fa-solid fa-angle-right"></i> PGs in Pune</a></li>
+                    <li><a href="search.php?city=Mumbai"><i class="fa-solid fa-angle-right"></i> PGs in Mumbai</a></li>
+                </ul>
+            </div>
 
-<div class="testimonial-card">
-<p>
-"I loved the roommate matching feature.
-It saved me a lot of money."
-</p>
-<h4>Arjun, Chennai</h4>
-</div>
+            <!-- Col 4: Contact & Help -->
+            <div>
+                <h4 class="footer-col-h4">Support & Contact</h4>
+                <div class="contact-row">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>support@pgroommatefinder.com</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 98765 43210 (9 AM - 8 PM)</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Tech Hub Park, Bangalore, Karnataka - 560068</span>
+                </div>
+            </div>
 
-</div>
+        </div>
 
-</section>
-<section class="faq">
+        <!-- Bottom Copyright -->
+        <div class="footer-copyright-bar">
+            <span>© 2026 Roommate & PG Finder. All Rights Reserved.</span>
+            <div style="display: flex; gap: 20px;">
+                <a href="#" style="color: #64748b; text-decoration: none;">Privacy Policy</a>
+                <a href="#" style="color: #64748b; text-decoration: none;">Terms of Service</a>
+                <a href="#" style="color: #64748b; text-decoration: none;">Security & Trust</a>
+            </div>
+        </div>
+    </footer>
 
-<h1 class="page-title">Frequently Asked Questions</h1>
+    <!-- Client-Side Scripts -->
+    <script>
+        // Mobile Navigation Menu Toggle
+        const mobileToggle = document.getElementById('mobileNavToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+            });
+        }
 
-<div class="faq-box">
-
-<h3>Is this website free to use?</h3>
-<p>Yes. Searching PGs and finding roommates is completely free.</p>
-
-<h3>Are PG listings verified?</h3>
-<p>Yes. Admin reviews every PG before it appears on the platform.</p>
-
-<h3>Can I change my roommate request later?</h3>
-<p>Yes. You can accept, reject, or send new requests anytime.</p>
-
-</div>
-
-</section>
-<footer class="footer">
-
-    <h3>Roommate & PG Finder</h3>
-
-    <p>Helping freshers find affordable PGs and compatible roommates.</p>
-
-    <p>© 2026 Roommate & PG Finder | All Rights Reserved</p>
-
-</footer>
-<script src="js/script.js"></script>
+        // Interactive FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const btn = item.querySelector('.faq-btn');
+            btn.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // Toggle clicked item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

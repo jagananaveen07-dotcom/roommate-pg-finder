@@ -116,16 +116,5 @@ Create Profile
 
 </div>
 
-<footer class="footer">
-
-<h3>Roommate & PG Finder</h3>
-
-<p>Helping freshers find affordable PGs and compatible roommates.</p>
-
-<p>© 2026 Roommate & PG Finder | All Rights Reserved</p>
-
-</footer>
-
 </body>
-
 </html>

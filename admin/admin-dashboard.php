@@ -38,6 +38,7 @@ $requests = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM roommate_requests"
 <nav class="navbar">
 
 <h2>Admin Panel</h2>
+    <button class="mobile-nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
 
 <div class="menu">
 
@@ -46,6 +47,8 @@ $requests = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM roommate_requests"
 <a href="manage-pgs.php">Manage PGs</a>
 
 <a href="manage-users.php">Users</a>
+
+<a href="add-admin.php">Add Admin</a>
 
 <a href="view-bookings.php">Bookings</a>
 
@@ -136,14 +139,18 @@ $requests = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM roommate_requests"
 
 </section>
 
-<footer class="footer">
-
-<h3>Roommate & PG Finder</h3>
-
-<p>Admin Dashboard</p>
-
-</footer>
-
+<script>
+    // Mobile menu: the stylesheet hides .menu under 768px until it gets the "show" class
+    (function () {
+        var btn = document.getElementById('navToggle');
+        var menu = document.querySelector('.navbar .menu');
+        if (!btn || !menu) return;
+        btn.addEventListener('click', function () {
+            var open = menu.classList.toggle('show');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    })();
+</script>
 </body>
 
 </html>

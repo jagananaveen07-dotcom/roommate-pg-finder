@@ -1,23 +1,31 @@
 <?php
+
 session_start();
 include("includes/db.php");
+include("includes/csrf.php");
 
-if(!isset($_SESSION['email']))
-{
+if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
 
+verify_csrf();
+
 $user_email = $_SESSION['email'];
 
-$pg_name = trim($_POST['pg_name']);
-$city = trim($_POST['city']);
-$rent = (int)$_POST['rent'];
+$pg_name = trim($_POST['pg_name'] ?? '');
+$city = trim($_POST['city'] ?? '');
+$rent = (int)($_POST['rent'] ?? 0);
+
+if ($pg_name === '' || $city === '' || $rent <= 0) {
+    die("Invalid booking details.");
+}
 
 // Check if already booked
-$check = mysqli_prepare($conn,
-"SELECT id FROM bookings
-WHERE user_email=? AND pg_name=?");
+$check = mysqli_prepare(
+    $conn,
+    "SELECT id FROM bookings WHERE user_email = ? AND pg_name = ?"
+);
 
 mysqli_stmt_bind_param(
     $check,
@@ -30,19 +38,21 @@ mysqli_stmt_execute($check);
 
 $result = mysqli_stmt_get_result($check);
 
-if(mysqli_num_rows($result) > 0)
-{
+if (mysqli_num_rows($result) > 0) {
+
     echo "<script>
     alert('You have already booked this PG!');
     window.location='booking-history.php';
     </script>";
-}
-else
-{
-    $stmt = mysqli_prepare($conn,
-    "INSERT INTO bookings
-    (user_email, pg_name, city, rent)
-    VALUES(?,?,?,?)");
+
+} else {
+
+    $stmt = mysqli_prepare(
+        $conn,
+        "INSERT INTO bookings
+        (user_email, pg_name, city, rent)
+        VALUES (?, ?, ?, ?)"
+    );
 
     mysqli_stmt_bind_param(
         $stmt,
@@ -53,16 +63,16 @@ else
         $rent
     );
 
-    if(mysqli_stmt_execute($stmt))
-    {
+    if (mysqli_stmt_execute($stmt)) {
+
         echo "<script>
         alert('Booking Successful!');
         window.location='booking-history.php';
         </script>";
-    }
-    else
-    {
-        echo 'Something went wrong!';
+
+    } else {
+
+        echo "Something went wrong!";
     }
 
     mysqli_stmt_close($stmt);

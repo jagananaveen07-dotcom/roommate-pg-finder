@@ -1,24 +1,48 @@
 <?php
 
 session_start();
-include("../includes/db.php");
 
-if(!isset($_SESSION['admin']))
-{
+include("../includes/db.php");
+include("../includes/csrf.php");
+
+if (!isset($_SESSION['admin'])) {
     header("Location: admin-login.php");
     exit();
 }
 
-$id=$_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: manage-users.php");
+    exit();
+}
 
-mysqli_query($conn,"DELETE FROM users WHERE id='$id'");
+verify_csrf();
 
-echo "<script>
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 
-alert('User Deleted Successfully!');
+if (!$id) {
+    die("Invalid user ID.");
+}
 
-window.location='manage-users.php';
+$stmt = mysqli_prepare(
+    $conn,
+    "DELETE FROM users WHERE id = ?"
+);
 
-</script>";
+if (!$stmt) {
+    die("Database error.");
+}
+
+mysqli_stmt_bind_param(
+    $stmt,
+    "i",
+    $id
+);
+
+mysqli_stmt_execute($stmt);
+
+mysqli_stmt_close($stmt);
+
+header("Location: manage-users.php");
+exit();
 
 ?>

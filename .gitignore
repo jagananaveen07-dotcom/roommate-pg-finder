@@ -1,0 +1,30 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Local mail configuration
+includes/mail_config.local.php
+
+# IDE / editor files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Development / test scripts
+scratch_*.php
+test_*.php
+
+# Dependencies
+/vendor/
+node_modules/

@@ -1,6 +1,9 @@
 <?php
+
 session_start();
+
 include("includes/db.php");
+include("includes/csrf.php");
 
 if(!isset($_SESSION['email']))
 {
@@ -8,14 +11,31 @@ if(!isset($_SESSION['email']))
     exit();
 }
 
+if($_SERVER['REQUEST_METHOD'] !== 'POST')
+{
+    header("Location: dashboard.php");
+    exit();
+}
+
+verify_csrf();
+
 $email = $_SESSION['email'];
 
-$fullname = trim($_POST['fullname']);
-$city = trim($_POST['city']);
-$password = trim($_POST['password']);
+$fullname = trim($_POST['fullname'] ?? '');
+$city = trim($_POST['city'] ?? '');
+$password = trim($_POST['password'] ?? '');
+
+if($fullname === '' || $city === '')
+{
+    echo "<script>
+    alert('Full name and city cannot be empty.');
+    window.location='dashboard.php';
+    </script>";
+    exit();
+}
 
 // If password is blank, don't update it
-if($password == "")
+if($password === "")
 {
     $stmt = mysqli_prepare(
         $conn,
@@ -23,6 +43,12 @@ if($password == "")
          SET fullname=?, city=?
          WHERE email=?"
     );
+
+    if(!$stmt)
+    {
+        echo "Database error.";
+        exit();
+    }
 
     mysqli_stmt_bind_param(
         $stmt,
@@ -34,6 +60,11 @@ if($password == "")
 }
 else
 {
+    $hashed_password = password_hash(
+        $password,
+        PASSWORD_DEFAULT
+    );
+
     $stmt = mysqli_prepare(
         $conn,
         "UPDATE users
@@ -41,12 +72,18 @@ else
          WHERE email=?"
     );
 
+    if(!$stmt)
+    {
+        echo "Database error.";
+        exit();
+    }
+
     mysqli_stmt_bind_param(
         $stmt,
         "ssss",
         $fullname,
         $city,
-        $password,
+        $hashed_password,
         $email
     );
 }
@@ -66,4 +103,5 @@ else
 }
 
 mysqli_stmt_close($stmt);
+
 ?>
