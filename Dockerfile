@@ -1,15 +1,11 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
-# Fix "More than one MPM loaded": keep only mpm_prefork (required for PHP)
-RUN a2dismod mpm_event mpm_worker || true \
- && a2enmod mpm_prefork
-
-# PHP extensions for MySQL
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copy your project
-COPY . /var/www/html/
+WORKDIR /var/www/html
+COPY . .
 
-# Make Apache listen on Railway's PORT instead of 80
-CMD sed -i "s/80/${PORT:-80}/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf \
- && apache2-foreground
+# Handle several requests at once
+ENV PHP_CLI_SERVER_WORKERS=4
+
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t /var/www/html"]
