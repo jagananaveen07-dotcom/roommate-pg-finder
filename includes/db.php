@@ -12,6 +12,6 @@ try {
     $conn = new mysqli($host, $user, $pass, $db, $port);
     $conn->set_charset('utf8mb4');
 } catch (mysqli_sql_exception $e) {
-    error_log('DB connection failed: ' . $e->getMessage());
-    die('Database connection failed.');
+    } catch (mysqli_sql_exception $e) {
+    die('DB error: ' . $e->getMessage() . ' | host=' . $host . ' | db=' . $db . ' | port=' . $port);
 }
