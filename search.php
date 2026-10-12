@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("includes/db.php");
+require_once __DIR__ . '/includes/db.php';
 
 // Search & Filter parameters
 $city_filter = isset($_GET['city']) ? trim($_GET['city']) : '';
