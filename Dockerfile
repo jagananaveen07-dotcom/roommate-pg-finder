@@ -1,21 +1,20 @@
 FROM php:8.2-apache
 
-# Disable all Apache MPM modules first
-RUN set -eux; \
-    for mpm in mpm_event mpm_worker mpm_prefork; do \
-        a2dismod "$mpm" 2>/dev/null || true; \
-    done
+# Disable conflicting MPM modules and enable prefork
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
+    && a2enmod mpm_prefork
 
-# Enable only prefork MPM and URL rewriting
-RUN a2enmod mpm_prefork rewrite
-
-# Install the MySQL extension for PHP
+# Install PHP MySQL support
 RUN docker-php-ext-install mysqli
 
-# Verify Apache configuration during the build
-RUN apache2ctl -t && apache2ctl -M
+# Enable URL rewriting
+RUN a2enmod rewrite
 
-# Copy the project into Apache's web directory
+# Verify Apache configuration during the image build
+RUN apache2ctl -M \
+    && apache2ctl configtest
+
+# Copy application files
 COPY . /var/www/html/
 
 RUN chown -R www-data:www-data /var/www/html
