@@ -1,22 +1,15 @@
 FROM php:8.2-apache
 
-# Disable conflicting MPM modules and enable prefork
-RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
-    && a2enmod mpm_prefork
+# Fix "More than one MPM loaded": keep only mpm_prefork (required for PHP)
+RUN a2dismod mpm_event mpm_worker || true \
+ && a2enmod mpm_prefork
 
-# Install PHP MySQL support
-RUN docker-php-ext-install mysqli
+# PHP extensions for MySQL
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Enable URL rewriting
-RUN a2enmod rewrite
-
-# Verify Apache configuration during the image build
-RUN apache2ctl -M \
-    && apache2ctl configtest
-
-# Copy application files
+# Copy your project
 COPY . /var/www/html/
 
-RUN chown -R www-data:www-data /var/www/html
-
-EXPOSE 80
+# Make Apache listen on Railway's PORT instead of 80
+CMD sed -i "s/80/${PORT:-80}/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf \
+ && apache2-foreground
